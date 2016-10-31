@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     public int maxJumps;
     private int jumps;
     private int score;
-    private bool facingRight = true;
+    public bool facingRight = true;
     private GameObject gameOver;
     private GameObject scoreText;
 
