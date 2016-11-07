@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -110,6 +111,11 @@ public class Player : MonoBehaviour {
 		{
 			UpdateScore (coll.gameObject);
 		}
+
+        if (coll.gameObject.tag == "Level2Port")
+        {
+            SceneManager.LoadScene("PalloScene2");
+        }
 	}
     
     public void GameOver()

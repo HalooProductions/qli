@@ -10,6 +10,7 @@ TagManager:
   - ScoreObject
   - ScoreText
   - Boulder
+  - Level2Port
   layers:
   - Default
   - TransparentFX
