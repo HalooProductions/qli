@@ -103,6 +103,14 @@ public class Player : MonoBehaviour {
 			GameOver();
 		}
     }
+
+	public void OnTriggerEnter2D(Collider2D coll)
+	{
+		if (coll.gameObject.tag == "ScoreObject") 
+		{
+			UpdateScore (coll.gameObject);
+		}
+	}
     
     public void GameOver()
     {
