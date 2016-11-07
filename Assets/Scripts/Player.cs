@@ -92,6 +92,16 @@ public class Player : MonoBehaviour {
         {
             UpdateScore(coll.gameObject);
         }
+
+		if(coll.gameObject.tag == "Boulder")
+		{
+			GameOver();
+		}
+
+		if (coll.gameObject.tag == "Boulder")
+		{
+			GameOver();
+		}
     }
     
     public void GameOver()
