@@ -12,12 +12,14 @@ public class Player : MonoBehaviour {
     public bool facingRight = true;
     private GameObject gameOver;
     private GameObject scoreText;
+	private bool GameOverStatus;
 
 
 
 
 	// Use this for initialization
 	void Start () {
+		GameOverStatus = false;
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
         gameOver = GameObject.FindGameObjectWithTag("GameOver");
@@ -63,6 +65,15 @@ public class Player : MonoBehaviour {
             Jump();
         }
         
+		//Jos GameOverStatus=true
+		if (GameOverStatus) 
+		{
+			print ("Täällä");
+			if (Input.anyKey) 
+			{
+				Application.LoadLevel (0);
+			}
+		}
 	}
 
     void LateUpdate()
@@ -114,8 +125,7 @@ public class Player : MonoBehaviour {
     
     public void GameOver()
     {
-        Destroy(gameObject);
-        gameOver.GetComponent<Text>().enabled = true;
+		Application.LoadLevel (1);
     }
 
     public void UpdateScore(GameObject g)
