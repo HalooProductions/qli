@@ -232,6 +232,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010932865030, guid: be998595cfcd33445ae76ac365cc27ee, type: 2}
+      propertyPath: m_TagString
+      value: Boulder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be998595cfcd33445ae76ac365cc27ee, type: 2}
   m_IsPrefabParent: 0
