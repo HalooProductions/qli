@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qli.CSharp.Plugins", "qli.CSharp.Plugins.csproj", "{9D5332BE-E424-F9CA-7743-FEF54CF50E1F}"
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLI.CSharp.Plugins", "QLI.CSharp.Plugins.csproj", "{9D5332BE-E424-F9CA-7743-FEF54CF50E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "qli.CSharp", "qli.CSharp.csproj", "{F8F2ACD8-0533-1E32-3371-CE8CB390CA78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLI.CSharp", "QLI.CSharp.csproj", "{AD218498-B493-CF77-85CF-F91B1BB9AB52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,10 @@ Global
 		{9D5332BE-E424-F9CA-7743-FEF54CF50E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D5332BE-E424-F9CA-7743-FEF54CF50E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D5332BE-E424-F9CA-7743-FEF54CF50E1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F8F2ACD8-0533-1E32-3371-CE8CB390CA78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F8F2ACD8-0533-1E32-3371-CE8CB390CA78}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F8F2ACD8-0533-1E32-3371-CE8CB390CA78}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F8F2ACD8-0533-1E32-3371-CE8CB390CA78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD218498-B493-CF77-85CF-F91B1BB9AB52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD218498-B493-CF77-85CF-F91B1BB9AB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD218498-B493-CF77-85CF-F91B1BB9AB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD218498-B493-CF77-85CF-F91B1BB9AB52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
