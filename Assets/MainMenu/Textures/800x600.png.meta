@@ -47,13 +47,8 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 5
-  buildTargetSettings:
-  - buildTarget: Standalone
-    maxTextureSize: 1024
-    textureFormat: 10
-    compressionQuality: 50
-    allowsAlphaSplitting: 0
+  textureType: 8
+  buildTargetSettings: []
   spriteSheet:
     serializedVersion: 2
     sprites: []
