@@ -11,6 +11,7 @@ TagManager:
   - ScoreText
   - Boulder
   - Level2Port
+  - Water
   layers:
   - Default
   - TransparentFX

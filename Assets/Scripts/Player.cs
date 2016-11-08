@@ -16,7 +16,6 @@ public class Player : MonoBehaviour {
 
 
 
-
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
@@ -117,6 +116,18 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene("PalloScene2");
         }
 	}
+
+    public void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Water")
+        {
+            if (Input.GetKeyDown("space"))
+            {
+                rb2d.AddForce(new Vector2(0, -300f));
+                jumps++;
+            }
+        }
+    }
     
     public void GameOver()
     {
