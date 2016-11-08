@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b04b0c4f196334d8826a6b646958b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundTexture: {fileID: 2800000, guid: a3da0e7b2caa9f1449a0f7a3aeaa9003, type: 3}
+  backgroundTexture: {fileID: 2800000, guid: c463fda500263444a91464dd4d9549fb, type: 3}
   PlayGameButton: {fileID: 2800000, guid: ede01e8efbf34334385196e71ea5c72e, type: 3}
   ExitGameButton: {fileID: 2800000, guid: aa85680b97d33dc48a9e4de37313dc5a, type: 3}
   GUIPositionY1: 0.4

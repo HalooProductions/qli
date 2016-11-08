@@ -23,7 +23,7 @@ public class GameOverMenu : MonoBehaviour {
 		//Menun tausta
 		GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 		// You Died
-		GUI.DrawTexture(new Rect(Screen.width * GUIPositionX4, Screen.height * GUIPositionY4, Screen.width * .5f, Screen.height * .1f), YouDied);
+		GUI.DrawTexture(new Rect(Screen.width * GUIPositionX4, Screen.height * GUIPositionY4, Screen.width * .3f, Screen.height * .1f), YouDied);
 		//Menun nappulat
 		if (GUI.Button (new Rect (Screen.width * GUIPositionX1, Screen.height * GUIPositionY1, Screen.width * .5f, Screen.height * .1f), NewGameButton, "")) 
 		{
