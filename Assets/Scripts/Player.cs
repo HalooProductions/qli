@@ -13,9 +13,7 @@ public class Player : MonoBehaviour {
     public bool facingRight = true;
     private GameObject gameOver;
     private GameObject scoreText;
-
-
-
+    private bool canDash = true;
 
 	// Use this for initialization
 	void Start () {
@@ -36,6 +34,7 @@ public class Player : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         x *= speed;
         x *= Time.deltaTime;
+
         if(!facingRight)
         {
             x *= -1;
@@ -62,6 +61,11 @@ public class Player : MonoBehaviour {
         {
             jumps++;
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Dash();
         }
         
 	}
@@ -129,5 +133,28 @@ public class Player : MonoBehaviour {
         Destroy(g);
         score++;
         scoreText.GetComponent<Text>().text = "Score: " + score;
+    }
+
+    private void Dash()
+    {
+        if (canDash)
+        {
+            speed = 24;
+            canDash = false;
+            StartCoroutine(EndDash());
+        }
+    }
+
+    IEnumerator EndDash()
+    {
+        yield return new WaitForSeconds(1);
+        speed = 12;
+        StartCoroutine(RegenDash());
+    }
+
+    IEnumerator RegenDash()
+    {
+        yield return new WaitForSeconds(10);
+        canDash = true;
     }
 }
