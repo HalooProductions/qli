@@ -121,10 +121,9 @@ public class Player : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Water")
         {
-            if (Input.GetKeyDown("space"))
+            if (Input.GetKey(KeyCode.Space))
             {
-                rb2d.AddForce(new Vector2(0, -300f));
-                jumps++;
+                rb2d.AddForce(new Vector2(0, -35f));
             }
         }
     }
