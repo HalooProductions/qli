@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -12,7 +13,6 @@ public class Player : MonoBehaviour {
     public bool facingRight = true;
     private GameObject gameOver;
     private GameObject scoreText;
-
 
 
 
@@ -110,7 +110,23 @@ public class Player : MonoBehaviour {
 		{
 			UpdateScore (coll.gameObject);
 		}
+
+        if (coll.gameObject.tag == "Level2Port")
+        {
+            SceneManager.LoadScene("PalloScene2");
+        }
 	}
+
+    public void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Water")
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb2d.AddForce(new Vector2(0, -35f));
+            }
+        }
+    }
     
     public void GameOver()
     {
