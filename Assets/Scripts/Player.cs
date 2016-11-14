@@ -13,11 +13,12 @@ public class Player : MonoBehaviour {
     public bool facingRight = true;
     private GameObject gameOver;
     private GameObject scoreText;
-
-
+	private bool GameOverStatus;
+    private bool canDash = true;
 
 	// Use this for initialization
 	void Start () {
+		GameOverStatus = false;
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
         gameOver = GameObject.FindGameObjectWithTag("GameOver");
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         x *= speed;
         x *= Time.deltaTime;
+
         if(!facingRight)
         {
             x *= -1;
@@ -62,7 +64,21 @@ public class Player : MonoBehaviour {
             jumps++;
             Jump();
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Dash();
+        }
         
+		//Jos GameOverStatus=true
+		if (GameOverStatus) 
+		{
+			print ("Täällä");
+			if (Input.anyKey) 
+			{
+				Application.LoadLevel (0);
+			}
+		}
 	}
 
     void LateUpdate()
@@ -130,8 +146,7 @@ public class Player : MonoBehaviour {
     
     public void GameOver()
     {
-        Destroy(gameObject);
-        gameOver.GetComponent<Text>().enabled = true;
+		Application.LoadLevel (1);
     }
 
     public void UpdateScore(GameObject g)
@@ -139,5 +154,28 @@ public class Player : MonoBehaviour {
         Destroy(g);
         score++;
         scoreText.GetComponent<Text>().text = "Score: " + score;
+    }
+
+    private void Dash()
+    {
+        if (canDash)
+        {
+            speed = 24;
+            canDash = false;
+            StartCoroutine(EndDash());
+        }
+    }
+
+    IEnumerator EndDash()
+    {
+        yield return new WaitForSeconds(1);
+        speed = 12;
+        StartCoroutine(RegenDash());
+    }
+
+    IEnumerator RegenDash()
+    {
+        yield return new WaitForSeconds(10);
+        canDash = true;
     }
 }
