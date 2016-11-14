@@ -14,7 +14,15 @@ public class Player : MonoBehaviour {
     private GameObject gameOver;
     private GameObject scoreText;
 	private bool GameOverStatus;
+    private bool dashing = false;
     private bool canDash = true;
+    private bool canRegen = true;
+    private float dashMeter = 1f;
+    float barDisplay = 0;
+    Vector2 pos = new Vector2(10, 40);
+    Vector2 size = new Vector2(60, 20);
+    Texture2D progressBarEmpty;
+    Texture2D progressBarFull;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +34,6 @@ public class Player : MonoBehaviour {
         scoreText = GameObject.FindGameObjectWithTag("ScoreText");
         score = 0;
         scoreText.GetComponent<Text>().text = "Score: 0";
-
     }
 	
 	// Update is called once per frame
@@ -65,26 +72,36 @@ public class Player : MonoBehaviour {
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             Dash();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            speed = 12;
+            dashing = false;
         }
         
 		//Jos GameOverStatus=true
 		if (GameOverStatus) 
 		{
-			print ("Täällä");
 			if (Input.anyKey) 
 			{
 				Application.LoadLevel (0);
 			}
 		}
-	}
+    }
 
     void LateUpdate()
     {
         // Kamera seuraa pelaajaa
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
+
+        if (!dashing && dashMeter < 1f && canRegen)
+        {
+            dashMeter += 0.1f;
+        }
     }
 
     public void Jump()
@@ -158,11 +175,23 @@ public class Player : MonoBehaviour {
 
     private void Dash()
     {
-        if (canDash)
+        dashing = true;
+        if (dashMeter > 0.0f)
         {
             speed = 24;
-            canDash = false;
-            StartCoroutine(EndDash());
+            dashMeter -= 0.05f;
+        }
+        else if (dashMeter <= 0.0f)
+        {
+            canRegen = false;
+            speed = 12;
+            dashMeter = 0f;
+            StartCoroutine(RegenDash());
+        }
+        else
+        {
+            speed = 12;
+            dashing = false;
         }
     }
 
@@ -175,7 +204,20 @@ public class Player : MonoBehaviour {
 
     IEnumerator RegenDash()
     {
-        yield return new WaitForSeconds(10);
-        canDash = true;
+        yield return new WaitForSeconds(5);
+        canRegen = true;
+    }
+
+    public void OnGUI()
+    {
+        GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
+        GUI.Box(new Rect(0, 0, size.x, size.y), progressBarEmpty);
+
+        // draw the filled-in part:
+        GUI.BeginGroup(new Rect(0, 0, size.x * dashMeter, size.y));
+        GUI.Box(new Rect(0, 0, size.x, size.y), progressBarFull);
+        GUI.EndGroup();
+
+        GUI.EndGroup();
     }
 }
