@@ -8,8 +8,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/2D Platformer Controller/Scenes/Demo.unity
   - enabled: 1
-    path: Assets/MainMenu/MainMenu.unity
-  - enabled: 1
-    path: Assets/GameOverMenu/GameOverMenu.unity
-  - enabled: 1
     path: Assets/PalloScene1.unity
+  - enabled: 1
+    path: Assets/PalloScene2.unity

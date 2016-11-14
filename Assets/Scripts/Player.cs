@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -13,9 +14,7 @@ public class Player : MonoBehaviour {
     private GameObject gameOver;
     private GameObject scoreText;
 	private bool GameOverStatus;
-
-
-
+    private bool canDash = true;
 
 	// Use this for initialization
 	void Start () {
@@ -37,6 +36,7 @@ public class Player : MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         x *= speed;
         x *= Time.deltaTime;
+
         if(!facingRight)
         {
             x *= -1;
@@ -63,6 +63,11 @@ public class Player : MonoBehaviour {
         {
             jumps++;
             Jump();
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            Dash();
         }
         
 		//Jos GameOverStatus=true
@@ -121,6 +126,11 @@ public class Player : MonoBehaviour {
 		{
 			UpdateScore (coll.gameObject);
 		}
+
+        if (coll.gameObject.tag == "Level2Port")
+        {
+            SceneManager.LoadScene("PalloScene2");
+        }
 	}
     
     public void GameOver()
@@ -133,5 +143,28 @@ public class Player : MonoBehaviour {
         Destroy(g);
         score++;
         scoreText.GetComponent<Text>().text = "Score: " + score;
+    }
+
+    private void Dash()
+    {
+        if (canDash)
+        {
+            speed = 24;
+            canDash = false;
+            StartCoroutine(EndDash());
+        }
+    }
+
+    IEnumerator EndDash()
+    {
+        yield return new WaitForSeconds(1);
+        speed = 12;
+        StartCoroutine(RegenDash());
+    }
+
+    IEnumerator RegenDash()
+    {
+        yield return new WaitForSeconds(10);
+        canDash = true;
     }
 }

@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AD218498-B493-CF77-85CF-F91B1BB9AB52}</ProjectGuid>
+    <ProjectGuid>{F8F2ACD8-0533-1E32-3371-CE8CB390CA78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -68,9 +68,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="QLI.CSharp.Plugins.csproj">
-      <Project>{9D5332BE-E424-F9CA-7743-FEF54CF50E1F}</Project>
-      <Name>QLI.CSharp.Plugins</Name>
+    <ProjectReference Include="qli.CSharp.Plugins.csproj">
+      <Project>{21BCC308-EB8B-9AA1-2CBD-12B656EC0E45}</Project>
+      <Name>qli.CSharp.Plugins</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
