@@ -12,6 +12,7 @@ TagManager:
   - Boulder
   - Level2Port
   - Water
+  - TurnAround
   layers:
   - Default
   - TransparentFX
