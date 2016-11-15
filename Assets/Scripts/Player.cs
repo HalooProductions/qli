@@ -15,8 +15,8 @@ public class Player : MonoBehaviour {
     private GameObject scoreText;
 	private bool GameOverStatus;
     private bool dashing = false;
-    private bool canDash = true;
-    private bool canRegen = true;
+    private bool isRegeningDash = false;
+    private bool canRegenDash = true;
     private float dashMeter = 1f;
     float barDisplay = 0;
     Vector2 pos = new Vector2(10, 40);
@@ -77,10 +77,9 @@ public class Player : MonoBehaviour {
             Dash();
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && !isRegeningDash)
         {
-            speed = 12;
-            dashing = false;
+            StartCoroutine(EndDash());
         }
         
 		//Jos GameOverStatus=true
@@ -98,9 +97,13 @@ public class Player : MonoBehaviour {
         // Kamera seuraa pelaajaa
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
 
-        if (!dashing && dashMeter < 1f && canRegen)
+        if (!dashing && dashMeter < 1f && canRegenDash)
         {
             dashMeter += 0.1f;
+        }
+        else if (dashMeter >= 1f)
+        {
+            isRegeningDash = false;
         }
     }
 
@@ -183,29 +186,25 @@ public class Player : MonoBehaviour {
         }
         else if (dashMeter <= 0.0f)
         {
-            canRegen = false;
-            speed = 12;
             dashMeter = 0f;
-            StartCoroutine(RegenDash());
-        }
-        else
-        {
-            speed = 12;
-            dashing = false;
+            StartCoroutine(EndDash());
         }
     }
 
     IEnumerator EndDash()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
         speed = 12;
+        dashing = false;
+        isRegeningDash = true;
+        canRegenDash = false;
         StartCoroutine(RegenDash());
     }
 
     IEnumerator RegenDash()
     {
         yield return new WaitForSeconds(5);
-        canRegen = true;
+        canRegenDash = true;
     }
 
     public void OnGUI()
