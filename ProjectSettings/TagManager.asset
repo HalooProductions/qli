@@ -10,7 +10,7 @@ TagManager:
   - ScoreObject
   - ScoreText
   - Boulder
-  - Level2Port
+  - Level3Port
   layers:
   - Default
   - TransparentFX
@@ -22,7 +22,7 @@ TagManager:
   - 
   - Player
   - Obstacle
-  - 
+  - Wind
   - 
   - 
   - 
@@ -59,4 +59,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3658969373
+    locked: 0
+  - name: ParticleSystem
+    uniqueID: 3964979107
     locked: 0

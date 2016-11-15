@@ -116,7 +116,12 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("PalloScene2");
         }
-	}
+
+        if (coll.gameObject.tag == "Level3Port")
+        {
+            SceneManager.LoadScene("PalloScene3");
+        }
+    }
     
     public void GameOver()
     {
