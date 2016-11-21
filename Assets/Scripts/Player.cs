@@ -13,7 +13,6 @@ public class Player : MonoBehaviour {
     public bool facingRight = true;
     private GameObject gameOver;
     private GameObject scoreText;
-	private bool GameOverStatus;
     private bool dashing = false;
     private bool isRegeningDash = false;
     private bool canRegenDash = true;
@@ -23,10 +22,10 @@ public class Player : MonoBehaviour {
     Vector2 size = new Vector2(60, 20);
     Texture2D progressBarEmpty;
     Texture2D progressBarFull;
+    public string PreviousScene = "";
 
 	// Use this for initialization
 	void Start () {
-		GameOverStatus = false;
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
         gameOver = GameObject.FindGameObjectWithTag("GameOver");
@@ -81,15 +80,6 @@ public class Player : MonoBehaviour {
         {
             StartCoroutine(EndDash());
         }
-        
-		//Jos GameOverStatus=true
-		if (GameOverStatus) 
-		{
-			if (Input.anyKey) 
-			{
-				SceneManager.LoadScene("GameOverMenu");
-			}
-		}
     }
 
     void LateUpdate()
@@ -149,16 +139,19 @@ public class Player : MonoBehaviour {
 
         if (coll.gameObject.tag == "Level2Port")
         {
+            PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("PalloScene2");
         }
 				
         if (coll.gameObject.tag == "Level3Port")
         {
+            PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("PalloScene3");
         }
 	
         if (coll.gameObject.tag == "Level4Port")
         {
+            PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("PalloScene4");
         }
 
