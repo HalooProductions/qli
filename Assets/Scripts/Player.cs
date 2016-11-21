@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 		{
 			if (Input.anyKey) 
 			{
-				Application.LoadLevel (0);
+				SceneManager.LoadScene("GameOverMenu");
 			}
 		}
     }
@@ -183,7 +183,7 @@ public class Player : MonoBehaviour {
     
     public void GameOver()
     {
-		Application.LoadLevel (1);
+		SceneManager.LoadScene("GameOverMenu");
     }
 
     public void UpdateScore(GameObject g)
