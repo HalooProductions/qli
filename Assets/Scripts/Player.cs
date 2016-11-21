@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
 		{
 			if (Input.anyKey) 
 			{
-				Application.LoadLevel (0);
+				SceneManager.LoadScene("GameOverMenu");
 			}
 		}
     }
@@ -157,10 +157,11 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene("PalloScene3");
         }
 	
-        if (coll.gameObject.tag == "Level3Port")
+        if (coll.gameObject.tag == "Level4Port")
         {
             SceneManager.LoadScene("PalloScene4");
         }
+
         if (coll.gameObject.tag == "Key")
         {
             Destroy(GameObject.FindWithTag("Gate"));
@@ -182,7 +183,7 @@ public class Player : MonoBehaviour {
     
     public void GameOver()
     {
-		Application.LoadLevel (1);
+		SceneManager.LoadScene("GameOverMenu");
     }
 
     public void UpdateScore(GameObject g)
