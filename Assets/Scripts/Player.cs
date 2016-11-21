@@ -161,6 +161,10 @@ public class Player : MonoBehaviour {
             {
                 rb2d.AddForce(new Vector2(0, -35f));
             }
+
+        if (coll.gameObject.tag == "Level3Port")
+        {
+            SceneManager.LoadScene("PalloScene3");
         }
     }
     
