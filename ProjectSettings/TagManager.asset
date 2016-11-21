@@ -12,6 +12,9 @@ TagManager:
   - Boulder
   - Level2Port
   - Water
+  - Key
+  - Gate
+  - Level3Port
   layers:
   - Default
   - TransparentFX

@@ -131,6 +131,10 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("PalloScene2");
         }
+        if (coll.gameObject.tag == "Level3Port")
+        {
+            SceneManager.LoadScene("PalloScene4");
+        }
         if (coll.gameObject.tag == "Key")
         {
             Destroy(GameObject.FindWithTag("Gate"));
