@@ -15,3 +15,5 @@ EditorBuildSettings:
     path: Assets/PalloScene1.unity
   - enabled: 1
     path: Assets/PalloScene2.unity
+  - enabled: 1
+    path: Assets/PalloScene3.unity

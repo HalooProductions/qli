@@ -157,10 +157,11 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene("PalloScene3");
         }
 	
-        if (coll.gameObject.tag == "Level3Port")
+        if (coll.gameObject.tag == "Level4Port")
         {
             SceneManager.LoadScene("PalloScene4");
         }
+
         if (coll.gameObject.tag == "Key")
         {
             Destroy(GameObject.FindWithTag("Gate"));
