@@ -12,6 +12,7 @@ TagManager:
   - Boulder
   - Level2Port
   - Water
+  - TurnAround
   - Level3Port
   layers:
   - Default
