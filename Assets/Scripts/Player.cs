@@ -151,6 +151,11 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("PalloScene2");
         }
+				
+        if (coll.gameObject.tag == "Level3Port")
+        {
+            SceneManager.LoadScene("PalloScene3");
+        }
 	}
 
     public void OnTriggerStay2D(Collider2D coll)
@@ -161,11 +166,8 @@ public class Player : MonoBehaviour {
             {
                 rb2d.AddForce(new Vector2(0, -35f));
             }
+		}
 
-        if (coll.gameObject.tag == "Level3Port")
-        {
-            SceneManager.LoadScene("PalloScene3");
-        }
     }
     
     public void GameOver()
