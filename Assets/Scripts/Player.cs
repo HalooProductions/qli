@@ -14,7 +14,15 @@ public class Player : MonoBehaviour {
     private GameObject gameOver;
     private GameObject scoreText;
 	private bool GameOverStatus;
-    private bool canDash = true;
+    private bool dashing = false;
+    private bool isRegeningDash = false;
+    private bool canRegenDash = true;
+    private float dashMeter = 1f;
+    float barDisplay = 0;
+    Vector2 pos = new Vector2(10, 40);
+    Vector2 size = new Vector2(60, 20);
+    Texture2D progressBarEmpty;
+    Texture2D progressBarFull;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +34,6 @@ public class Player : MonoBehaviour {
         scoreText = GameObject.FindGameObjectWithTag("ScoreText");
         score = 0;
         scoreText.GetComponent<Text>().text = "Score: 0";
-
     }
 	
 	// Update is called once per frame
@@ -65,26 +72,39 @@ public class Player : MonoBehaviour {
             Jump();
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftControl))
         {
             Dash();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl) && !isRegeningDash)
+        {
+            StartCoroutine(EndDash());
         }
         
 		//Jos GameOverStatus=true
 		if (GameOverStatus) 
 		{
-			print ("Täällä");
 			if (Input.anyKey) 
 			{
 				Application.LoadLevel (0);
 			}
 		}
-	}
+    }
 
     void LateUpdate()
     {
         // Kamera seuraa pelaajaa
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
+
+        if (!dashing && dashMeter < 1f && canRegenDash)
+        {
+            dashMeter += 0.1f;
+        }
+        else if (dashMeter >= 1f)
+        {
+            isRegeningDash = false;
+        }
     }
 
     public void Jump()
@@ -131,6 +151,11 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("PalloScene2");
         }
+				
+        if (coll.gameObject.tag == "Level3Port")
+        {
+            SceneManager.LoadScene("PalloScene3");
+        }
 	}
 
     public void OnTriggerStay2D(Collider2D coll)
@@ -141,7 +166,8 @@ public class Player : MonoBehaviour {
             {
                 rb2d.AddForce(new Vector2(0, -35f));
             }
-        }
+		}
+
     }
     
     public void GameOver()
@@ -158,24 +184,45 @@ public class Player : MonoBehaviour {
 
     private void Dash()
     {
-        if (canDash)
+        dashing = true;
+        if (dashMeter > 0.0f)
         {
             speed = 24;
-            canDash = false;
+            dashMeter -= 0.05f;
+        }
+        else if (dashMeter <= 0.0f)
+        {
+            dashMeter = 0f;
             StartCoroutine(EndDash());
         }
     }
 
     IEnumerator EndDash()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0);
         speed = 12;
+        dashing = false;
+        isRegeningDash = true;
+        canRegenDash = false;
         StartCoroutine(RegenDash());
     }
 
     IEnumerator RegenDash()
     {
-        yield return new WaitForSeconds(10);
-        canDash = true;
+        yield return new WaitForSeconds(5);
+        canRegenDash = true;
+    }
+
+    public void OnGUI()
+    {
+        GUI.BeginGroup(new Rect(pos.x, pos.y, size.x, size.y));
+        GUI.Box(new Rect(0, 0, size.x, size.y), progressBarEmpty);
+
+        // draw the filled-in part:
+        GUI.BeginGroup(new Rect(0, 0, size.x * dashMeter, size.y));
+        GUI.Box(new Rect(0, 0, size.x, size.y), progressBarFull);
+        GUI.EndGroup();
+
+        GUI.EndGroup();
     }
 }
