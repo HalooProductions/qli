@@ -6,27 +6,25 @@ public class Enemy : MonoBehaviour {
     public bool facingRight = true;
     public float speed;
     private float x;
+    private Rigidbody2D rb2d;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         x = 1;
-	}
+        rb2d = GetComponent<Rigidbody2D>();
+    }
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
+        rb2d.freezeRotation = true;
         x = 1;
         x *= speed;
         x *= Time.deltaTime;
-	    if (!facingRight)
-        {
-            x *= -1;
-        }
-        transform.Translate(x, 0, 0);
+        transform.Translate(new Vector3(x, 0, 0));
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
+    public void OnTriggerEnter2D(Collider2D coll) {
         if (coll.gameObject.tag == "TurnAround" && facingRight)
         {
             TurnAround(0);
@@ -37,8 +35,7 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void TurnAround(int y)
-    {
+    public void TurnAround(int y) {
         if(y == 0)
         {
             Vector3 theScale = transform.localScale;
@@ -50,7 +47,7 @@ public class Enemy : MonoBehaviour {
         {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+           transform.localScale = theScale;
             facingRight = true;
         }
     }
