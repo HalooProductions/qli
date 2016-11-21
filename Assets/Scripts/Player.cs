@@ -156,7 +156,17 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("PalloScene3");
         }
-	}
+	
+        if (coll.gameObject.tag == "Level3Port")
+        {
+            SceneManager.LoadScene("PalloScene4");
+        }
+        if (coll.gameObject.tag == "Key")
+        {
+            Destroy(GameObject.FindWithTag("Gate"));
+            Destroy(GameObject.FindWithTag("Key"));
+        }
+    }
 
     public void OnTriggerStay2D(Collider2D coll)
     {
