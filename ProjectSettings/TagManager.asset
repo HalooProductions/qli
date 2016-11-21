@@ -11,6 +11,8 @@ TagManager:
   - ScoreText
   - Boulder
   - Level2Port
+  - Water
+  - TurnAround
   layers:
   - Default
   - TransparentFX

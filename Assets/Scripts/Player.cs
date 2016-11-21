@@ -132,6 +132,17 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene("PalloScene2");
         }
 	}
+
+    public void OnTriggerStay2D(Collider2D coll)
+    {
+        if (coll.gameObject.tag == "Water")
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb2d.AddForce(new Vector2(0, -35f));
+            }
+        }
+    }
     
     public void GameOver()
     {
