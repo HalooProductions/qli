@@ -24,19 +24,14 @@ public class GameOverMenu : MonoBehaviour {
 	public float GUIPositionX4;
     public float GUIPositionX5;
 
-    private string previous;
+    private string previous = "";
+    
 
-    void Start(){
-        GameObject prevScene = GameObject.Find("prevScene");
-        Player playerScript = prevScene.GetComponent<Player>();
-        previous = playerScript.PreviousScene;
-        if (previous == "")
-        {
-            previous = "PalloScene1";
-        }
+    void Start () {
+        previous = LevelManager.getLastLevel();
     }
 
-	void OnGUI(){
+	void OnGUI () {
 		//Menun tausta
 		GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 		// You Died

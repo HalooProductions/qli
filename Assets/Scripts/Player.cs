@@ -11,7 +11,6 @@ public class Player : MonoBehaviour {
     private int jumps;
     private int score;
     public bool facingRight = true;
-    private GameObject gameOver;
     private GameObject scoreText;
     private bool dashing = false;
     private bool isRegeningDash = false;
@@ -22,14 +21,11 @@ public class Player : MonoBehaviour {
     Vector2 size = new Vector2(60, 20);
     Texture2D progressBarEmpty;
     Texture2D progressBarFull;
-    public string PreviousScene = "";
 
 	// Use this for initialization
 	void Start () {
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
-        gameOver = GameObject.FindGameObjectWithTag("GameOver");
-        gameOver.GetComponent<Text>().enabled = false;
         scoreText = GameObject.FindGameObjectWithTag("ScoreText");
         score = 0;
         scoreText.GetComponent<Text>().text = "Score: 0";
@@ -97,6 +93,12 @@ public class Player : MonoBehaviour {
         }
     }
 
+    void Awake()
+    {
+        // LevelManager tallentaa levelin
+        LevelManager.setLastLevel(SceneManager.GetActiveScene().name);
+    }
+
     public void Jump()
     {
         rb2d.AddForce(new Vector2(0, 300f));
@@ -139,19 +141,16 @@ public class Player : MonoBehaviour {
 
         if (coll.gameObject.tag == "Level2Port")
         {
-            PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("PalloScene2");
         }
 				
         if (coll.gameObject.tag == "Level3Port")
         {
-            PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("PalloScene3");
         }
 	
         if (coll.gameObject.tag == "Level4Port")
         {
-            PreviousScene = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene("PalloScene4");
         }
 
