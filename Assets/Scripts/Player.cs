@@ -11,7 +11,6 @@ public class Player : MonoBehaviour {
     private int jumps;
     private int score;
     public bool facingRight = true;
-    private GameObject gameOver;
     private GameObject scoreText;
 	private bool GameOverStatus;
     private float dashMeter = 1f;
@@ -24,11 +23,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameOverStatus = false;
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
-        gameOver = GameObject.FindGameObjectWithTag("GameOver");
-        gameOver.GetComponent<Text>().enabled = false;
         scoreText = GameObject.FindGameObjectWithTag("ScoreText");
         score = 0;
         scoreText.GetComponent<Text>().text = "Score: 0";
@@ -89,15 +85,6 @@ public class Player : MonoBehaviour {
             speed = 12;
             canRegenDash = true;
         }
-        
-		//Jos GameOverStatus=true
-		if (GameOverStatus) 
-		{
-			if (Input.anyKey) 
-			{
-				SceneManager.LoadScene("GameOverMenu");
-			}
-		}
     }
 
     void LateUpdate()
@@ -113,6 +100,12 @@ public class Player : MonoBehaviour {
         {
             canRegenDash = false;
         }
+    }
+
+    void Awake()
+    {
+        // LevelManager tallentaa levelin
+        LevelManager.setLastLevel(SceneManager.GetActiveScene().name);
     }
 
     public void Jump()
