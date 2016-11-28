@@ -15,6 +15,7 @@ TagManager:
   - TurnAround
   - Key
   - Gate
+  - Level4Port
   - Level3Port
   layers:
   - Default
