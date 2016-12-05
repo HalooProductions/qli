@@ -12,10 +12,9 @@ public class Player : MonoBehaviour {
     private int score;
     public bool facingRight = true;
     private GameObject scoreText;
-    private bool dashing = false;
-    private bool isRegeningDash = false;
-    private bool canRegenDash = true;
+	private bool GameOverStatus;
     private float dashMeter = 1f;
+    private bool canRegenDash = false;
     float barDisplay = 0;
     Vector2 pos = new Vector2(10, 40);
     Vector2 size = new Vector2(60, 20);
@@ -67,14 +66,24 @@ public class Player : MonoBehaviour {
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            Dash();
+            if (dashMeter > 0f)
+            {
+                speed = 24;
+                dashMeter -= 0.05f;
+            }
+            else
+            {
+                speed = 12;
+                canRegenDash = true;
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl) && !isRegeningDash)
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            StartCoroutine(EndDash());
+            speed = 12;
+            canRegenDash = true;
         }
     }
 
@@ -83,13 +92,13 @@ public class Player : MonoBehaviour {
         // Kamera seuraa pelaajaa
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
 
-        if (!dashing && dashMeter < 1f && canRegenDash)
+        if (dashMeter < 1f && canRegenDash)
         {
-            dashMeter += 0.1f;
+            dashMeter += 0.005f;
         }
         else if (dashMeter >= 1f)
         {
-            isRegeningDash = false;
+            canRegenDash = false;
         }
     }
 
@@ -183,37 +192,6 @@ public class Player : MonoBehaviour {
         Destroy(g);
         score++;
         scoreText.GetComponent<Text>().text = "Score: " + score;
-    }
-
-    private void Dash()
-    {
-        dashing = true;
-        if (dashMeter > 0.0f)
-        {
-            speed = 24;
-            dashMeter -= 0.05f;
-        }
-        else if (dashMeter <= 0.0f)
-        {
-            dashMeter = 0f;
-            StartCoroutine(EndDash());
-        }
-    }
-
-    IEnumerator EndDash()
-    {
-        yield return new WaitForSeconds(0);
-        speed = 12;
-        dashing = false;
-        isRegeningDash = true;
-        canRegenDash = false;
-        StartCoroutine(RegenDash());
-    }
-
-    IEnumerator RegenDash()
-    {
-        yield return new WaitForSeconds(5);
-        canRegenDash = true;
     }
 
     public void OnGUI()
