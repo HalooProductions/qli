@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour {
     private float x;
     private Rigidbody2D rb2d;
 
-
     // Use this for initialization
     void Start () {
         x = 1;
@@ -22,6 +21,20 @@ public class Enemy : MonoBehaviour {
         x *= speed;
         x *= Time.deltaTime;
         transform.Translate(new Vector3(x, 0, 0));
+    }
+
+    public void OnCollisionEnter2D(Collision2D coll) {
+        if (coll.gameObject.tag == "Player")
+        {
+            if (IsKilled(coll.gameObject))
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                coll.gameObject.GetComponent<Player>().GameOver();
+            }
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D coll) {
@@ -47,8 +60,19 @@ public class Enemy : MonoBehaviour {
         {
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
-           transform.localScale = theScale;
+            transform.localScale = theScale;
             facingRight = true;
+        }
+    }
+
+    public bool IsKilled(GameObject g) {
+        if (transform.position.y - g.transform.position.y < -1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 }

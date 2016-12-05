@@ -134,11 +134,6 @@ public class Player : MonoBehaviour {
 		{
 			GameOver();
 		}
-
-		if (coll.gameObject.tag == "Boulder")
-		{
-			GameOver();
-		}
     }
 
 	public void OnTriggerEnter2D(Collider2D coll)
