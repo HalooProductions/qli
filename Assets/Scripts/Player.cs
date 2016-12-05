@@ -130,10 +130,10 @@ public class Player : MonoBehaviour {
             UpdateScore(coll.gameObject);
         }
 
-		/*if(coll.gameObject.tag == "Boulder")
+		if(coll.gameObject.tag == "Boulder")
 		{
 			GameOver();
-		}*/
+		}
     }
 
 	public void OnTriggerEnter2D(Collider2D coll)
