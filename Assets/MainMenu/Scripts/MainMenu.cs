@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
 	public Texture backgroundTexture;
+    public Texture instructionsTexture;
 
 	public Texture PlayGameButton;
 	public Texture ExitGameButton;
@@ -16,42 +17,46 @@ public class MainMenu : MonoBehaviour {
     public Texture lvl4Button;
     public Texture lvl5Button;
     public Texture backButton;
+    public Texture instructionsButton;
 
     public GameObject levelSelectCanvas;
+    public GameObject instructionsCanvas;
 
     public bool lvlSelect = false;
-
-	public float GUIPositionY1;
-	public float GUIPositionY2;
-	public float GUIPositionX1;
-	public float GUIPositionX2;
+    public bool instructions = false;
 
     void Start ()
     {
         levelSelectCanvas.gameObject.SetActive(false);
+        instructionsCanvas.gameObject.SetActive(false);
     }
 
 	void OnGUI(){
-        if(lvlSelect == false)
+        if (lvlSelect == false && instructions == false)
         {
             //Menun tausta
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgroundTexture);
             //Menun nappulat
-            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height * GUIPositionY1, 200, Screen.height * .1f), PlayGameButton, ""))
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height * 0.4f, 200, Screen.height * .1f), PlayGameButton, ""))
             {
                 SceneManager.LoadScene("PalloScene1");
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - 125, Screen.height * GUIPositionY2, 250, Screen.height * .1f), levelSelectButton, ""))
+            if (GUI.Button(new Rect(Screen.width / 2 - 125, Screen.height * 0.54f, 250, Screen.height * .1f), levelSelectButton, ""))
             {
                 lvlSelect = true;
                 levelSelectCanvas.gameObject.SetActive(true);
             }
-            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height * 0.72f, 200, Screen.height * .1f), ExitGameButton, ""))
+            if (GUI.Button(new Rect(Screen.width / 2 - 125, Screen.height * 0.68f, 250, Screen.height * .1f), instructionsButton, ""))
+            {
+                instructions = true;
+                instructionsCanvas.gameObject.SetActive(true);
+            }
+            if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height * 0.82f, 200, Screen.height * .1f), ExitGameButton, ""))
             {
                 Application.Quit();
             }
         }
-        else if (lvlSelect == true)
+        else if (lvlSelect == true && instructions == false)
         {
             // Menun tausta
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), backgroundTexture);
@@ -85,6 +90,18 @@ public class MainMenu : MonoBehaviour {
             {
                 lvlSelect = false;
                 levelSelectCanvas.gameObject.SetActive(false);
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+        else if (instructions == true && lvlSelect == false)
+        {
+            //Menun tausta
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), instructionsTexture);
+
+            if (GUI.Button(new Rect(Screen.width / 2 + 300, Screen.height * 0.9f, 200, Screen.height * .1f), backButton, ""))
+            {
+                instructions = false;
+                instructionsCanvas.gameObject.SetActive(false);
                 SceneManager.LoadScene("MainMenu");
             }
         }
