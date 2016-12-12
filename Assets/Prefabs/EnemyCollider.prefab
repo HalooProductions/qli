@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000012316085598}
   - 61: {fileID: 61000011127398956}
   m_Layer: 0
-  m_Name: EnemyCollider (1)
+  m_Name: EnemyCollider
   m_TagString: TurnAround
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

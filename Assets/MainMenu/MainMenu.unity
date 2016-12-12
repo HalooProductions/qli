@@ -164,7 +164,7 @@ GameObject:
   - 114: {fileID: 954382531}
   - 114: {fileID: 954382530}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: LvlSelectCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,6 +239,98 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1792028839}
   m_RootOrder: 0
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!1 &1344435539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1344435543}
+  - 223: {fileID: 1344435542}
+  - 114: {fileID: 1344435541}
+  - 114: {fileID: 1344435540}
+  m_Layer: 0
+  m_Name: InstructionsCanvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1344435540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344435539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1344435541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344435539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &1344435542
+Canvas:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344435539}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1344435543
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1344435539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1792028839}
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -331,6 +423,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 954382533}
+  - {fileID: 1344435543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &1792028840
@@ -345,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundTexture: {fileID: 2800000, guid: c463fda500263444a91464dd4d9549fb, type: 3}
+  instructionsTexture: {fileID: 2800000, guid: 2f11a64d1019b444db1e7719ea4c824a, type: 3}
   PlayGameButton: {fileID: 2800000, guid: ede01e8efbf34334385196e71ea5c72e, type: 3}
   ExitGameButton: {fileID: 2800000, guid: aa85680b97d33dc48a9e4de37313dc5a, type: 3}
   levelSelectButton: {fileID: 2800000, guid: ac9c59d27ddfdf8439c7e92fd41b30ae, type: 3}
@@ -354,9 +448,8 @@ MonoBehaviour:
   lvl4Button: {fileID: 2800000, guid: a97e1435b0021174a8add5ae56b36cca, type: 3}
   lvl5Button: {fileID: 2800000, guid: 01f8c87f91fd5e946b0f0ed73f2929b0, type: 3}
   backButton: {fileID: 2800000, guid: caac5026b1803f94b80f06994d9a90af, type: 3}
+  instructionsButton: {fileID: 2800000, guid: 97775992d748d2248828b17e3222f077, type: 3}
   levelSelectCanvas: {fileID: 954382529}
+  instructionsCanvas: {fileID: 1344435539}
   lvlSelect: 0
-  GUIPositionY1: 0.4
-  GUIPositionY2: 0.56
-  GUIPositionX1: 0.38
-  GUIPositionX2: 0.38
+  instructions: 0
