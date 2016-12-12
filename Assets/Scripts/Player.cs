@@ -44,20 +44,17 @@ public class Player : MonoBehaviour {
         }
         transform.Translate(new Vector3(x, 0, 0));
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && facingRight)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.RightArrow))
         {
-            facingRight = false;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale; 
+            
         }
-
-        if(Input.GetKeyDown(KeyCode.RightArrow) && !facingRight)
+        else if (Input.GetAxisRaw("Horizontal") < 0 && facingRight)
         {
-            facingRight = true;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            Flip();
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0 && !facingRight)
+        {
+            Flip();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && jumps < maxJumps)
@@ -108,6 +105,14 @@ public class Player : MonoBehaviour {
         LevelManager.setLastLevel(SceneManager.GetActiveScene().name);
     }
 
+    public void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
     public void Jump()
     {
         rb2d.AddForce(new Vector2(0, 300f));
@@ -131,11 +136,6 @@ public class Player : MonoBehaviour {
         }
 
 		if(coll.gameObject.tag == "Boulder")
-		{
-			GameOver();
-		}
-
-		if (coll.gameObject.tag == "Boulder")
 		{
 			GameOver();
 		}
