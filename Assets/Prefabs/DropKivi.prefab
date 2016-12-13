@@ -22,6 +22,7 @@ GameObject:
   - 212: {fileID: 212000012898572234}
   - 50: {fileID: 50000013833644148}
   - 58: {fileID: 58000013403244858}
+  - 114: {fileID: 114000011198037296}
   m_Layer: 0
   m_Name: DropKivi
   m_TagString: PlayerBoulder
@@ -73,6 +74,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.0829301
+--- !u!114 &114000011198037296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011180864988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6048c9ba7933d6749b5208687b80bb1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212000012898572234
 SpriteRenderer:
   m_ObjectHideFlags: 1

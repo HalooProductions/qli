@@ -8,5 +8,10 @@ public class PlayerBoulder : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
+        if (coll.gameObject.tag == "Boss")
+        {
+            Destroy(gameObject);
+        }
     }
 }

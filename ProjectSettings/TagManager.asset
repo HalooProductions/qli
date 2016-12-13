@@ -25,6 +25,7 @@ TagManager:
   - CloseByParticles
   - JalluPullo
   - PlayerBoulder
+  - Boss
   layers:
   - Default
   - TransparentFX
