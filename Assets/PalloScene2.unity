@@ -459,7 +459,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 425634173}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -497,12 +497,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 0
   scalingMode: 1
+  randomSeed: 1111302376
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -2332,7 +2333,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
+  m_Children:
+  - {fileID: 1550984449}
   m_Father: {fileID: 0}
   m_RootOrder: 14
 --- !u!1001 &544839200
@@ -2854,6 +2856,8 @@ MonoBehaviour:
   speed: 12
   maxJumps: 2
   facingRight: 1
+  boulderSpawnPoint: {fileID: 0}
+  boulder: {fileID: 0}
 --- !u!58 &1049058588
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3402,6 +3406,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 30
+--- !u!1001 &1550984448
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 525471838}
+    m_Modifications:
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: cd82b751d833d7b4084ceddd9149dbd5, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &1550984449 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4000011628606032, guid: cd82b751d833d7b4084ceddd9149dbd5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1550984448}
 --- !u!1001 &1563034168
 Prefab:
   m_ObjectHideFlags: 0
@@ -3752,7 +3803,7 @@ ParticleSystem:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1898263359}
-  serializedVersion: 2
+  serializedVersion: 4
   lengthInSec: 5
   startDelay:
     scalar: 0
@@ -3790,12 +3841,13 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  randomSeed: 1111302376
   looping: 1
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 1
+  autoRandomSeed: 0
   scalingMode: 1
+  randomSeed: 1111302400
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -3958,7 +4010,7 @@ ParticleSystem:
         m_NumColorKeys: 2
         m_NumAlphaKeys: 2
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.50980395, g: 0.5882353, b: 0.8156863, a: 1}
+      maxColor: {r: 0.003921569, g: 0.03529412, b: 0.11764706, a: 1}
       minMaxState: 0
     startSize:
       scalar: 0.3
