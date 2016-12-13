@@ -194,11 +194,14 @@ MonoBehaviour:
   MainMenuButton: {fileID: 2800000, guid: cb7310618672f9c4c8db604469c6caa3, type: 3}
   ExitGameButton: {fileID: 2800000, guid: 3a8cba875ed0a6d4cb30bd99539ecea5, type: 3}
   YouDied: {fileID: 2800000, guid: 048467e347005c347a417de8b6ee7263, type: 3}
-  GUIPositionY1: 0.44
-  GUIPositionY2: 0.55
-  GUIPositionY3: 0.66
-  GUIPositionY4: 0.31
-  GUIPositionX1: 0.38
-  GUIPositionX2: 0.38
-  GUIPositionX3: 0.38
-  GUIPositionX4: 0.35
+  RestartButton: {fileID: 2800000, guid: aab07cd2b56fc3747b39b1818e32c742, type: 3}
+  GUIPositionY1: 0.55
+  GUIPositionY2: 0.65
+  GUIPositionY3: 0.75
+  GUIPositionY4: 0.3
+  GUIPositionY5: 0.44
+  GUIPositionX1: 50
+  GUIPositionX2: 50
+  GUIPositionX3: 50
+  GUIPositionX4: 50
+  GUIPositionX5: 50

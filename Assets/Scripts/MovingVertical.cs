@@ -13,9 +13,8 @@ public class MovingVertical : MonoBehaviour
         origY = transform.position.y;
         speed = -dirSpeed;
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    void FixedUpdate()
     {
         if (origY - transform.position.y > distance)
         {

@@ -11,13 +11,10 @@ public class Player : MonoBehaviour {
     private int jumps;
     private int score;
     public bool facingRight = true;
-    private GameObject gameOver;
     private GameObject scoreText;
 	private bool GameOverStatus;
-    private bool dashing = false;
-    private bool isRegeningDash = false;
-    private bool canRegenDash = true;
     private float dashMeter = 1f;
+    private bool canRegenDash = false;
     float barDisplay = 0;
     Vector2 pos = new Vector2(10, 40);
     Vector2 size = new Vector2(60, 20);
@@ -26,11 +23,8 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameOverStatus = false;
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
-        gameOver = GameObject.FindGameObjectWithTag("GameOver");
-        gameOver.GetComponent<Text>().enabled = false;
         scoreText = GameObject.FindGameObjectWithTag("ScoreText");
         score = 0;
         scoreText.GetComponent<Text>().text = "Score: 0";
@@ -72,24 +66,26 @@ public class Player : MonoBehaviour {
             Jump();
         }
 
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            Dash();
+            if (dashMeter > 0f)
+            {
+                speed = 24;
+                dashMeter -= 0.05f;
+            }
+            else
+            {
+                speed = 12;
+                canRegenDash = true;
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl) && !isRegeningDash)
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            StartCoroutine(EndDash());
+            speed = 12;
+            canRegenDash = true;
         }
-        
-		//Jos GameOverStatus=true
-		if (GameOverStatus) 
-		{
-			if (Input.anyKey) 
-			{
-				SceneManager.LoadScene("GameOverMenu");
-			}
-		}
+
     }
 
     void LateUpdate()
@@ -97,14 +93,20 @@ public class Player : MonoBehaviour {
         // Kamera seuraa pelaajaa
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 10);
 
-        if (!dashing && dashMeter < 1f && canRegenDash)
+        if (dashMeter < 1f && canRegenDash)
         {
-            dashMeter += 0.1f;
+            dashMeter += 0.005f;
         }
         else if (dashMeter >= 1f)
         {
-            isRegeningDash = false;
+            canRegenDash = false;
         }
+    }
+
+    void Awake()
+    {
+        // LevelManager tallentaa levelin
+        LevelManager.setLastLevel(SceneManager.GetActiveScene().name);
     }
 
     public void Jump()
@@ -162,10 +164,19 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene("PalloScene4");
         }
 
+        if (coll.gameObject.tag == "BossScene")
+        {
+            SceneManager.LoadScene("BossScene");
+        }
+
         if (coll.gameObject.tag == "Key")
         {
             Destroy(GameObject.FindWithTag("Gate"));
             Destroy(GameObject.FindWithTag("Key"));
+        }
+        if (coll.gameObject.tag == "Rope")
+        {
+            
         }
     }
 
@@ -191,37 +202,6 @@ public class Player : MonoBehaviour {
         Destroy(g);
         score++;
         scoreText.GetComponent<Text>().text = "Score: " + score;
-    }
-
-    private void Dash()
-    {
-        dashing = true;
-        if (dashMeter > 0.0f)
-        {
-            speed = 24;
-            dashMeter -= 0.05f;
-        }
-        else if (dashMeter <= 0.0f)
-        {
-            dashMeter = 0f;
-            StartCoroutine(EndDash());
-        }
-    }
-
-    IEnumerator EndDash()
-    {
-        yield return new WaitForSeconds(0);
-        speed = 12;
-        dashing = false;
-        isRegeningDash = true;
-        canRegenDash = false;
-        StartCoroutine(RegenDash());
-    }
-
-    IEnumerator RegenDash()
-    {
-        yield return new WaitForSeconds(5);
-        canRegenDash = true;
     }
 
     public void OnGUI()

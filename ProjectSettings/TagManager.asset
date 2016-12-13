@@ -15,7 +15,13 @@ TagManager:
   - TurnAround
   - Key
   - Gate
+  - Level4Port
   - Level3Port
+  - MovingPlatform
+  - Rope
+  - Spike
+  - Level5Port
+  - BossScene
   layers:
   - Default
   - TransparentFX
