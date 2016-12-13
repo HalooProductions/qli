@@ -85,6 +85,7 @@ public class Player : MonoBehaviour {
             speed = 12;
             canRegenDash = true;
         }
+
     }
 
     void LateUpdate()
@@ -163,10 +164,19 @@ public class Player : MonoBehaviour {
             SceneManager.LoadScene("PalloScene4");
         }
 
+        if (coll.gameObject.tag == "BossScene")
+        {
+            SceneManager.LoadScene("BossScene");
+        }
+
         if (coll.gameObject.tag == "Key")
         {
             Destroy(GameObject.FindWithTag("Gate"));
             Destroy(GameObject.FindWithTag("Key"));
+        }
+        if (coll.gameObject.tag == "Rope")
+        {
+            
         }
     }
 
