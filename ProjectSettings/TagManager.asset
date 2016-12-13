@@ -17,6 +17,9 @@ TagManager:
   - Gate
   - Level4Port
   - Level3Port
+  - CloseByParticles
+  - JalluPullo
+  - PlayerBoulder
   layers:
   - Default
   - TransparentFX

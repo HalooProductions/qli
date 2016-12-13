@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 	private bool GameOverStatus;
     private float dashMeter = 1f;
     private bool canRegenDash = false;
+    public GameObject boulderSpawnPoint;
+    public GameObject boulder;
     float barDisplay = 0;
     Vector2 pos = new Vector2(10, 40);
     Vector2 size = new Vector2(60, 20);
@@ -82,6 +84,17 @@ public class Player : MonoBehaviour {
             speed = 12;
             canRegenDash = true;
         }
+
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            if (boulder != null)
+            {
+                if (transform.position.y > 5)
+                {
+                    ThrowBoulder();
+                }
+            } 
+        }
     }
 
     void LateUpdate()
@@ -135,10 +148,20 @@ public class Player : MonoBehaviour {
             UpdateScore(coll.gameObject);
         }
 
-		if(coll.gameObject.tag == "Boulder")
+		if (coll.gameObject.tag == "Boulder")
 		{
 			GameOver();
 		}
+
+        if (coll.gameObject.tag == "JalluPullo")
+        {
+            GameOver();
+        }
+
+        if (coll.gameObject.tag == "Boss")
+        {
+            GameOver();
+        }
     }
 
 	public void OnTriggerEnter2D(Collider2D coll)
@@ -205,5 +228,10 @@ public class Player : MonoBehaviour {
         GUI.EndGroup();
 
         GUI.EndGroup();
+    }
+
+    public void ThrowBoulder()
+    {
+        Instantiate(boulder, boulderSpawnPoint.transform.position, boulderSpawnPoint.transform.rotation);
     }
 }
