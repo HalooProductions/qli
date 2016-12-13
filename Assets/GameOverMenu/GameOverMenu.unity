@@ -103,6 +103,7 @@ GameObject:
   - 124: {fileID: 798400852}
   - 81: {fileID: 798400851}
   - 114: {fileID: 798400856}
+  - 82: {fileID: 798400857}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -189,19 +190,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8b04b8535771e540b14af18e7606003, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroDeath: {fileID: 8300000, guid: 2ad3ce83519e800488b3d27c20035f15, type: 3}
+  efxSource: {fileID: 0}
   backgroundTexture: {fileID: 2800000, guid: c463fda500263444a91464dd4d9549fb, type: 3}
   NewGameButton: {fileID: 2800000, guid: 2d8611b09c5e603428b1525f9c36e2d5, type: 3}
   MainMenuButton: {fileID: 2800000, guid: cb7310618672f9c4c8db604469c6caa3, type: 3}
   ExitGameButton: {fileID: 2800000, guid: 3a8cba875ed0a6d4cb30bd99539ecea5, type: 3}
   YouDied: {fileID: 2800000, guid: 048467e347005c347a417de8b6ee7263, type: 3}
   RestartButton: {fileID: 2800000, guid: aab07cd2b56fc3747b39b1818e32c742, type: 3}
-  GUIPositionY1: 0.55
-  GUIPositionY2: 0.65
-  GUIPositionY3: 0.75
-  GUIPositionY4: 0.3
-  GUIPositionY5: 0.44
-  GUIPositionX1: 50
-  GUIPositionX2: 50
-  GUIPositionX3: 50
-  GUIPositionX4: 50
-  GUIPositionX5: 50
+--- !u!82 &798400857
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 798400850}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0

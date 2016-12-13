@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
+    public AudioClip jumpSound;
+    public AudioSource efxSource;
+
     public float speed;
     private Rigidbody2D rb2d;
     public int maxJumps;
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        efxSource = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         jumps = 0;
         scoreText = GameObject.FindGameObjectWithTag("ScoreText");
@@ -128,6 +132,7 @@ public class Player : MonoBehaviour {
 
     public void Jump()
     {
+        PlaySingle(jumpSound);
         rb2d.AddForce(new Vector2(0, 300f));
     }
 
@@ -238,5 +243,11 @@ public class Player : MonoBehaviour {
     public void ThrowBoulder()
     {
         Instantiate(boulder, boulderSpawnPoint.transform.position, boulderSpawnPoint.transform.rotation);
+    }
+
+    public void PlaySingle(AudioClip clip)
+    {
+        efxSource.clip = clip;
+        efxSource.Play();
     }
 }

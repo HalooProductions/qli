@@ -4,7 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverMenu : MonoBehaviour {
 
-	public Texture backgroundTexture;
+    public AudioClip heroDeath;
+    public AudioSource efxSource;
+    public Texture backgroundTexture;
 
 	public Texture NewGameButton;
 	public Texture MainMenuButton;
@@ -16,7 +18,9 @@ public class GameOverMenu : MonoBehaviour {
     
 
     void Start () {
+        efxSource = GetComponent<AudioSource>();
         previous = LevelManager.getLastLevel();
+        PlaySingle(heroDeath);
     }
 
 	void OnGUI () {
@@ -42,4 +46,10 @@ public class GameOverMenu : MonoBehaviour {
 			Application.Quit();
 		}
 	}
+
+    public void PlaySingle(AudioClip clip)
+    {
+        efxSource.clip = clip;
+        efxSource.Play();
+    }
 }
