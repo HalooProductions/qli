@@ -15,6 +15,8 @@ public class Player : MonoBehaviour {
 	private bool GameOverStatus;
     private float dashMeter = 1f;
     private bool canRegenDash = false;
+    public GameObject boulderSpawnPoint;
+    public GameObject boulder;
     float barDisplay = 0;
     Vector2 pos = new Vector2(10, 40);
     Vector2 size = new Vector2(60, 20);
@@ -44,20 +46,17 @@ public class Player : MonoBehaviour {
         }
         transform.Translate(new Vector3(x, 0, 0));
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && facingRight)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.RightArrow))
         {
-            facingRight = false;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale; 
+            
         }
-
-        if(Input.GetKeyDown(KeyCode.RightArrow) && !facingRight)
+        else if (Input.GetAxisRaw("Horizontal") < 0 && facingRight)
         {
-            facingRight = true;
-            Vector3 theScale = transform.localScale;
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            Flip();
+        }
+        else if(Input.GetAxisRaw("Horizontal") > 0 && !facingRight)
+        {
+            Flip();
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && jumps < maxJumps)
@@ -86,6 +85,16 @@ public class Player : MonoBehaviour {
             canRegenDash = true;
         }
 
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
+        {
+            if (boulder != null)
+            {
+                if (transform.position.y > 5)
+                {
+                    ThrowBoulder();
+                }
+            } 
+        }
     }
 
     void LateUpdate()
@@ -107,6 +116,14 @@ public class Player : MonoBehaviour {
     {
         // LevelManager tallentaa levelin
         LevelManager.setLastLevel(SceneManager.GetActiveScene().name);
+    }
+
+    public void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     public void Jump()
@@ -131,15 +148,20 @@ public class Player : MonoBehaviour {
             UpdateScore(coll.gameObject);
         }
 
-		if(coll.gameObject.tag == "Boulder")
-		{
-			GameOver();
-		}
-
 		if (coll.gameObject.tag == "Boulder")
 		{
 			GameOver();
 		}
+
+        if (coll.gameObject.tag == "JalluPullo")
+        {
+            GameOver();
+        }
+
+        if (coll.gameObject.tag == "Boss")
+        {
+            GameOver();
+        }
     }
 
 	public void OnTriggerEnter2D(Collider2D coll)
@@ -173,10 +195,6 @@ public class Player : MonoBehaviour {
         {
             Destroy(GameObject.FindWithTag("Gate"));
             Destroy(GameObject.FindWithTag("Key"));
-        }
-        if (coll.gameObject.tag == "Rope")
-        {
-            
         }
     }
 
@@ -215,5 +233,10 @@ public class Player : MonoBehaviour {
         GUI.EndGroup();
 
         GUI.EndGroup();
+    }
+
+    public void ThrowBoulder()
+    {
+        Instantiate(boulder, boulderSpawnPoint.transform.position, boulderSpawnPoint.transform.rotation);
     }
 }

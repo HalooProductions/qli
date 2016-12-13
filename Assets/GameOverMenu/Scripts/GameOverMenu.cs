@@ -12,12 +12,6 @@ public class GameOverMenu : MonoBehaviour {
 	public Texture YouDied;
     public Texture RestartButton;
 
-	public float GUIPositionY1;
-	public float GUIPositionY2;
-	public float GUIPositionY3;
-	public float GUIPositionY4;
-    public float GUIPositionY5;
-
     private string previous = "";
     
 
@@ -29,21 +23,21 @@ public class GameOverMenu : MonoBehaviour {
 		//Menun tausta
 		GUI.DrawTexture(new Rect (0, 0, Screen.width, Screen.height), backgroundTexture);
 		// You Died
-		GUI.DrawTexture(new Rect(Screen.width / 2 - 120, Screen.height * GUIPositionY4, 240, Screen.height * .1f), YouDied);
+		GUI.DrawTexture(new Rect(Screen.width / 2 - 120, Screen.height * 0.3f, 240, Screen.height * .1f), YouDied);
         //Menun nappulat
-        if (GUI.Button(new Rect(Screen.width / 2 - 120, Screen.height * GUIPositionY5, 240, Screen.height * .1f), RestartButton, ""))
+        if (GUI.Button(new Rect(Screen.width / 2 - 120, Screen.height * 0.44f, 240, Screen.height * .1f), RestartButton, ""))
         {
             SceneManager.LoadScene(previous);
         }
-        if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height * GUIPositionY1, 200, Screen.height * .1f), NewGameButton, "")) 
+        if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height * 0.55f, 200, Screen.height * .1f), NewGameButton, "")) 
 		{
             SceneManager.LoadScene("PalloScene1");
 		}
-		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height * GUIPositionY2, 200, Screen.height * .1f), MainMenuButton ,"")) 
+		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height * 0.65f, 200, Screen.height * .1f), MainMenuButton ,"")) 
 		{
 			SceneManager.LoadScene("MainMenu");
 		}
-		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height * GUIPositionY3, 200, Screen.height * .1f),ExitGameButton ,"")) 
+		if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height * 0.75f, 200, Screen.height * .1f),ExitGameButton ,"")) 
 		{
 			Application.Quit();
 		}

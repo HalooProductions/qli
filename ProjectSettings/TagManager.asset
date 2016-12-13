@@ -22,6 +22,9 @@ TagManager:
   - Spike
   - Level5Port
   - BossScene
+  - CloseByParticles
+  - JalluPullo
+  - PlayerBoulder
   layers:
   - Default
   - TransparentFX
