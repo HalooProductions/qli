@@ -6,8 +6,8 @@ public class BoulderSpawner : MonoBehaviour {
     public GameObject Boulder;
     public float spawnTimer;
     private float timer;
-    private float x;
-    private float y;
+    public float spawnx;
+    public float spawny;
 
     // Use this for initialization
     void Start()
@@ -34,9 +34,7 @@ public class BoulderSpawner : MonoBehaviour {
 
     public void Spawn()
     {
-        x = 21;
-        y = 17.5F;
-        Vector3 newPos = new Vector3(x, y, 0);
+        Vector3 newPos = new Vector3(spawnx, spawny, 0);
         transform.rotation = Quaternion.Euler(0, 0, Time.deltaTime);
         GameObject g = (GameObject)Instantiate(Boulder, newPos, transform.rotation);
     }

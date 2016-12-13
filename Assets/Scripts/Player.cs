@@ -162,6 +162,10 @@ public class Player : MonoBehaviour {
         {
             SceneManager.LoadScene("PalloScene4");
         }
+        if (coll.gameObject.tag == "FinalPort")
+        {
+            SceneManager.LoadScene("PalloScene2");
+        }
 
         if (coll.gameObject.tag == "Key")
         {
