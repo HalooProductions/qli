@@ -99,6 +99,26 @@ public class Player : MonoBehaviour {
                 }
             } 
         }
+
+        if (Input.GetKeyUp(KeyCode.Y))
+        {
+            if (SceneManager.GetActiveScene().name == "PalloScene1")
+            {
+                SceneManager.LoadScene("PalloScene2");
+            }
+            else if (SceneManager.GetActiveScene().name == "PalloScene2")
+            {
+                SceneManager.LoadScene("PalloScene3");
+            }
+            else if (SceneManager.GetActiveScene().name == "PalloScene3")
+            {
+                SceneManager.LoadScene("PalloScene4");
+            }
+            else if (SceneManager.GetActiveScene().name == "PalloScene4")
+            {
+                SceneManager.LoadScene("BossScene");
+            }
+        }
     }
 
     void LateUpdate()
