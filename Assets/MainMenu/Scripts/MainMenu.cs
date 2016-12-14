@@ -84,7 +84,7 @@ public class MainMenu : MonoBehaviour {
             if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height * 0.9f, 200, Screen.height * .1f), lvl5Button, ""))
             {
                 Time.timeScale = 1.0f;
-                SceneManager.LoadScene("PalloScene5");
+                SceneManager.LoadScene("BossScene");
             }
             if (GUI.Button(new Rect(Screen.width / 2 + 300, Screen.height * 0.9f, 200, Screen.height * .1f), backButton, ""))
             {
